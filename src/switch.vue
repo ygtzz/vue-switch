@@ -1,7 +1,10 @@
 <template>
-    <label class="switch">
+    <label class="switch" :style="[labelStyle]">
         <input v-model="checked" type="checkbox" />
-        <i class="icon"></i>
+        <i class="icon" :style="[totalStyle]">
+            <span class="icon-before" :style="[beforeStyle]"></span>
+            <span class="icon-after" :style="[afterStyle]"></span>
+        </i>
         <span v-if="!!text" v-text="text"></span>
     </label>
 </template>
@@ -22,6 +25,9 @@ export default{
         },
         width:{
             type:Number
+        },
+        height:{
+            type:Number
         }
     },
     data(){
@@ -30,13 +36,73 @@ export default{
         }
     },
     computed:{
-        switchWidth(){
-            return this.width ? this.width + 'px' : 'auto';
+        colorfix(){
+            if(!this.activeColor){
+                return '';
+            }
+            return this.activeColor.indexOf('#') > -1 ? this.activeColor : '#' + this.activeColor;
+        },
+        labelStyle(){
+            var style = {};
+            if(this.width){
+                style['paddingLeft'] = this.width + 5 + 'px';
+            }
+            return style;
+        },
+        totalStyle(){
+            var style = {};
+            if(this.width){
+                style['width'] = this.width + 'px';
+            }
+            if(this.height){
+                style['height'] = this.height + 'px';
+                this.fAddPrefixProperty(style,'borderRadius', Math.floor(this.height/2) + 'px');
+            }
+            if(this.checked){
+                if(this.colorfix){
+                    style['backgroundColor'] = this.colorfix;
+                    style['borderColor'] = this.colorfix;
+                }
+            }
+            return style;
+        },
+        beforeStyle(){
+            var style = {};
+            if(this.width){
+                style['width'] = this.width - 2 + 'px';
+            }
+            if(this.height){
+                style['height'] = this.height -2 + 'px';
+                this.fAddPrefixProperty(style,'borderRadius',Math.floor((this.height -2)/2) + 'px');
+            }
+            return style;
+        },
+        afterStyle(){
+            var style = {};
+            if(this.height){
+                style['width'] = this.height - 2 + 'px';
+                style['height'] = this.height -2 + 'px';
+            }
+            if(this.checked){
+                if(this.width && this.height){
+                    this.fAddPrefixProperty(style,'transform','translateX(' + (this.width - this.height) + 'px)');
+                }
+            }
+            return style;
         }
     },
     watch:{
         checked(val){
             this.$emit('input',val);
+        }
+    },
+    methods:{
+        fAddPrefixProperty(obj,prop,value){
+            var prefixs = ['-webkit',''];
+            prefixs.forEach(function(item){
+                obj[item + prop] = value;
+            });
+            return obj;
         }
     }
 }
@@ -54,8 +120,13 @@ export default{
         -moz-user-select:none;
         -ms-user-select:none;
         user-select:none;
+        padding-left: 65px;
     }
-    .switch > input:checked ~ .icon:before {
+    .switch > input{
+        opacity: 0;
+        position: absolute;
+    }
+    .switch > input:checked ~ .icon .icon-before {
         -webkit-transform: scale(0);
         transform: scale(0);
     }
@@ -63,9 +134,9 @@ export default{
         border-color: #0275d8;
         background-color: #0275d8;
     }
-    .switch > input:checked ~ .icon:after{
-        -webkit-transform: translateX(50px);
-        transform: translateX(50px);
+    .switch > input:checked ~ .icon .icon-after{
+        -webkit-transform: translateX(30px);
+        transform: translateX(30px);
     }
     .switch .icon{
         position:absolute;
@@ -73,27 +144,27 @@ export default{
         top:50%;
         transform: translate(0,-50%);
         -webkit-transform: translate(0,-50%);
-        width:112px;
-        height:62px;
-        border-radius:30px;
-        border:1px solid #dfdfdf;
-        background-color:#dfdfdf;
+        width: 60px;
+        height: 30px;
+        border-radius: 15px;
+        border: 1px solid #dfdfdf;
+        background-color: #dfdfdf;
         box-shadow:#fafafa 0 0 0 0 inset;        
     }
-    .icon:before{
-        width: 110px;
-        height: 60px;
-        border-radius: 30px;
+    .icon-before{
+        width: 58px;
+        height: 28px;
+        border-radius: 14px;
         background-color: #fdfdfd;
     }
-    .icon:after{
-        width: 60px;
-        height: 60px;
+    .icon-after{
+        width: 28px;
+        height: 28px;
         border-radius:50%;
         background-color:#fff;
         box-shadow:0 1px 3px rgba(0,0,0,.4);
     }
-    .icon:before,.icon:after{
+    .icon-before,.icon-after{
         position:absolute;
         top:0;
         left:0;

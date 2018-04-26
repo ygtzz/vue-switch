@@ -84,7 +84,10 @@ new Vue({
   data: function data() {
     return {
       checked: true,
-      text: '开关'
+      text: '开关',
+      width: 60,
+      height: 30,
+      activeColor: '#d9534f'
     };
   },
 

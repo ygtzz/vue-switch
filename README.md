@@ -29,12 +29,14 @@ Vue.component('c-switch',switchc);
 <c-switch v-model="checked" :text="text"></c-switch>
 ```
 
-### Params
-
-`props`
-- `v-model`	         switch checked status          required, Boolean
-- `text`	         switch text on right	        optional, String
-
+### Props
+Parameter | Type | required | Default | Description
+--------- | ---- | ------|-----------
+value | `boolean`| required | false | switch checked status, use width v-model
+text    | `string` | optional |       | switch text on right
+width   | `number`| optional | 60 |  switch width
+height  | `number`| optional | 30 |  switch height
+active-color |`string`| optional | '#0275d8' | switch checked color
 
 ### Preview
 
