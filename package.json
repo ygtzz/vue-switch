@@ -1,6 +1,6 @@
 {
-  "name": "vue-switch",
-  "version": "0.0.4",
+  "name": "vue-switchc",
+  "version": "0.1.1",
   "description": "a vue switch component",
   "main": "dist/vue-switch.js",
   "scripts": {

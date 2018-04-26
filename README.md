@@ -1,24 +1,24 @@
-## vue-pageman
+## vue-switch
 
 a vue switch component
 
 ### Install
 
 ```bash
-npm install vue-switch -S
+npm install vue-switchc -S
 
-yarn add vue-switch
+yarn add vue-switchc
 ```
 
 ### Quickstart
 ```javascript
-require('vue-pager/dist/vue-switch.css');
+require('vue-switchc/dist/vue-switch.css');
 
 // in ES6 modules
-import { switchc } from 'vue-switch';
+import { switchc } from 'vue-switchc';
 
 // in CommonJS
-const { switchc } = require('vue-switch');
+const { switchc } = require('vue-switchc');
 
 // in Global variable
 const { switchc } = VueSwitch;
