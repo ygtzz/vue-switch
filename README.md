@@ -31,7 +31,7 @@ Vue.component('c-switch',switchc);
 
 ### Props
 Parameter | Type | required | Default | Description
---------- | ---- | ------|-----------
+--------- | ---- | -------- | ------|-----------
 value | `boolean`| required | false | switch checked status, use width v-model
 text    | `string` | optional |       | switch text on right
 width   | `number`| optional | 60 |  switch width
