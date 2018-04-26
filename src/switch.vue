@@ -1,6 +1,6 @@
 <template>
     <label class="switch">
-        <input v-model="checked" type="checkbox" name="mo-switch">
+        <input v-model="checked" type="checkbox" />
         <i class="icon"></i>
         <span v-if="!!text" v-text="text"></span>
     </label>
