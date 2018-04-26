@@ -1,52 +1,41 @@
 ## vue-pageman
 
-a vue pagination component, modified from jquery pagination
+a vue switch component
 
 ### Install
 
 ```bash
-npm install vue-pageman -S
+npm install vue-switch -S
 
-yarn add vue-pageman
+yarn add vue-switch
 ```
 
 ### Quickstart
 ```javascript
-require('vue-pager/dist/vue-pageman.css');
+require('vue-pager/dist/vue-switch.css');
 
 // in ES6 modules
-import { pager } from 'vue-pageman';
+import { switchc } from 'vue-switch';
 
 // in CommonJS
-const { pager } = require('vue-pageman');
+const { switchc } = require('vue-switch');
 
 // in Global variable
-const { pager } = VuePageman;
+const { switchc } = VueSwitch;
 
-Vue.component('c-pager',pager);
+Vue.component('c-switch',switchc);
 ```
 ```html
-<c-pager :total="total" :pgeSize="10" 
-         :num-display-entries="4" :num-edge-entries="1" 
-         :cur-page="1"></c-pager>
+<c-switch v-model="checked" :text="text"></c-switch>
 ```
 
 ### Params
 
 `props`
-- `maxentries`	         item's total count	            required，Number
-- `items-per-page`	     item's count per page	        optional，default is 10
-- `num-display-entries`	 item's count in center area    optional，defalut is 10
-- `cur-page`	     current selected page	        optional，default is 0，representing first page
-- `num-edge-entries`	 item's count in both sides	    optional，default is 0
-- `link-to`	             page item's link               String，optional，default is "#"
-- `prev-text`	         pre page button's text	        String，optional，default is "Prev"
-- `next-text`	         next page button's text	    String，optional，default is "Next"
-- `ellipse-text`	     ellipsis text on not showing pages	optional，default is "..."
-- `prev-show-always`	 whether to show pre button	    Boolean，optional，default is true
-- `next-show-always`	 whether to show next button	Boolean，optional，default is true
-- `callback`	         callback function	            default is no return value
+- `v-model`	         switch checked status          required, Boolean
+- `text`	         switch text on right	        optional, String
+
 
 ### Preview
 
-![pager image](./doc/pager.png)
+![switch image](./doc/switch.png)

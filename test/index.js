@@ -8,8 +8,8 @@ new Vue({
   },
   data() {
     return {
-      checked:true,
-      text:'开关'
+      checked: true,
+      text: '开关'
     }
   },
   methods:{
